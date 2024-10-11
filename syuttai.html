@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            background-color: ivory;
+            display: flex;
+            justify-content: flex-end;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+        }
+
+        .content {
+            margin-right: 30px;
+        }
+
+        .header {
+            display: flex;
+            background-color: ivory;
+            justify-content: center; /* ヘッダーを中央に配置 */
+            align-items: center;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            border-bottom: 3px solid black; /* 下線を追加 */
+            padding-bottom: 1px; /* 下線との間に余白を追加 */
+        }
+
+        .caption {
+            color: black; /* テキストの色 */
+            font-weight: bold;
+            font-size: 24px;
+            margin-right: 20px;
+        }
+
+        .description {
+            color: blue;
+            font-size: 14px;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(10, 50px); /* ボタンの配置を10列 */
+            grid-template-rows: repeat(3, 200px); /* ボタンの配置を3行 */
+            gap: 9px;
+        }
+
+        .button {
+            width: 50px;
+            height: 200px;
+            background-color: #f0f0f0;
+            writing-mode: vertical-rl;
+            text-align: center;
+            font-size: 20px; /* テキストのフォントサイズを20ピクセルに設定 */
+            color: black; /* テキストの色を黒に設定 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer; /* カーソルをポインタに設定 */
+            border: 1.5px solid #000;
+            border-radius: 3px; /* 角丸設定 */
+            transition: all 0.3s ease; /* ボタンのすべてのプロパティに0.3秒のトランジション効果を設定 */
+        }
+
+        .button.clicked {
+            background-color: blue; /* クリック後のボタンの背景色 */
+            color: white; /* クリック後のテキストの色を白に設定 */
+            box-shadow: 0 0 10px rgba(0, 0, 255, 0.7); /* クリック後のボックスシャドウを設定 */
+        }
+
+        .button.hidden {
+            display: none;
+        }
+
+	.t {
+	    position: fixed;
+	    top: 10px;
+	    right: 30px;
+	}
+
+        .blue-button {
+            background-color: blue;
+            width: 15px; /* ボタンの直径 */
+            height: 15px; /* ボタンの直径 */
+            border-radius: 20%; /* 完全な円にする */
+            display: inline-flex; /* 中央揃えのためにインラインフレックスを使用 */
+            align-items: center; /* 縦方向の中央揃え */
+            justify-content: center; /* 横方向の中央揃え */
+            font-size: 8px; /* テキストのフォントサイズ */
+            color: white; /* テキストの色 */
+            text-align: center; /* テキストの位置 */
+            text-decoration: none; /* テキストの装飾を削除 */
+            border: none; /* ボーダーをなしにする */
+            cursor: pointer; /* カーソルをポインタに設定 */
+        }
+
+        .red-button {
+            background-color: red;
+            width: 15px; /* ボタンの直径 */
+            height: 15px; /* ボタンの直径 */
+            border-radius: 20%; /* 完全な円にする */
+            display: inline-flex; /* 中央揃えのためにインラインフレックスを使用 */
+            align-items: center; /* 縦方向の中央揃え */
+            justify-content: center; /* 横方向の中央揃え */
+            font-size: 8px; /* テキストのフォントサイズ */
+            color: white; /* テキストの色 */
+            text-align: center; /* テキストの位置 */
+            text-decoration: none; /* テキストの装飾を削除 */
+            border: none; /* ボーダーをなしにする */
+            cursor: pointer; /* カーソルをポインタに設定 */
+        }
+
+    </style>
+
+    <title>syuttai</title>
+
+</head>
+
+<body>
+	<div class="t">
+ 	<!-- クリック時にdownloadCSV関数を呼び出す -->
+		<button class="blue-button" onclick="downloadCSV()">Re</button>
+ 	<!-- クリック時にclearLocalStorage関数を呼び出す -->
+		<button class="red-button" onclick="clearLocalStorage()">Cl</button>
+	</div>
+
+    <div class="content">
+        <div class="header">
+            <div class="caption">議員出退表示</div>
+            <div class="description">登庁：■</div>
+        </div>
+
+        <div class="container">
+	<!-- ボタン1 --><button class="button" data-button-name="1太郎" onclick="toggleColorAndSave(this)">1会津　太郎</button>
+	<!-- ボタン2 --><button class="button" data-button-name="2花子" onclick="toggleColorAndSave(this)">2会津　太郎</button>
+	<!-- ボタン3 --><button class="button" data-button-name="3太郎" onclick="toggleColorAndSave(this)">3会津　太郎</button>
+	<!-- ボタン4 --><button class="button" data-button-name="4太郎" onclick="toggleColorAndSave(this)">4会津　太郎</button>
+	<!-- ボタン5 --><button class="button" data-button-name="5太郎" onclick="toggleColorAndSave(this)">5会津　太郎</button>
+	<!-- ボタン6 --><button class="button" data-button-name="6太郎" onclick="toggleColorAndSave(this)">6会津　太郎</button>
+	<!-- ボタン7 --><button class="button" data-button-name="7太郎" onclick="toggleColorAndSave(this)">7会津　太郎</button>
+	<!-- ボタン8 --><button class="button" data-button-name="8太郎" onclick="toggleColorAndSave(this)">8会津　太郎</button>
+	<!-- ボタン9 --><button class="button" data-button-name="9太郎" onclick="toggleColorAndSave(this)">9会津　太郎</button>
+	<!-- ボタン10 --><button class="button" data-button-name="10太郎" onclick="toggleColorAndSave(this)">10会津　太郎</button>
+	<!-- ボタン11 --><button class="button" data-button-name="11太郎" onclick="toggleColorAndSave(this)">11会津　太郎</button>
+	<!-- ボタン12 --><button class="button" data-button-name="12太郎" onclick="toggleColorAndSave(this)">12会津　太郎</button>
+	<!-- ボタン13 --><button class="button" data-button-name="13太郎" onclick="toggleColorAndSave(this)">13会津　太郎</button>
+	<!-- ボタン14 --><button class="button" data-button-name="14太郎" onclick="toggleColorAndSave(this)">14会津　太郎</button>
+	<!-- ボタン15 --><button class="button" data-button-name="15太郎" onclick="toggleColorAndSave(this)">15会津　太郎</button>
+	<!-- ボタン16 --><button class="button" data-button-name="16太郎" onclick="toggleColorAndSave(this)">16会津　太郎</button>
+	<!-- ボタン17 --><button class="button" data-button-name="17太郎" onclick="toggleColorAndSave(this)">17会津　太郎</button>
+	<!-- ボタン18 --><button class="button" data-button-name="18太郎" onclick="toggleColorAndSave(this)">18会津　太郎</button>
+	<!-- ボタン19 --><button class="button" data-button-name="19太郎" onclick="toggleColorAndSave(this)">19会津　太郎</button>
+	<!-- ボタン20 --><button class="button" data-button-name="20太郎" onclick="toggleColorAndSave(this)">20会津　太郎</button>
+	<!-- ボタン21 --><button class="button hidden" data-button-name="21太郎" onclick="toggleColorAndSave(this)">21会津　太郎</button>　<!-- ボタンを非表示 -->
+	<!-- ボタン22 --><button class="button" data-button-name="22太郎" onclick="toggleColorAndSave(this)">22会津　太郎</button>
+	<!-- ボタン23 --><button class="button" data-button-name="23太郎" onclick="toggleColorAndSave(this)">23会津　太郎</button>
+	<!-- ボタン24 --><button class="button" data-button-name="24太郎" onclick="toggleColorAndSave(this)">24会津　太郎</button>
+	<!-- ボタン25 --><button class="button" data-button-name="25太郎" onclick="toggleColorAndSave(this)">25会津　太郎</button>
+	<!-- ボタン26 --><button class="button" data-button-name="26太郎" onclick="toggleColorAndSave(this)">26会津　太郎</button>
+	<!-- ボタン27 --><button class="button" data-button-name="27太郎" onclick="toggleColorAndSave(this)">27会津　太郎</button>
+	<!-- ボタン28 --><button class="button" data-button-name="28太郎" onclick="toggleColorAndSave(this)">28会津　太郎</button>
+	<!-- ボタン29 --><button class="button" data-button-name="29太郎" onclick="toggleColorAndSave(this)">29会津　太郎</button>
+	<!-- ボタン30 --><button class="button hidden" data-button-name="30太郎" onclick="toggleColorAndSave(this)">30会津　太郎</button> <!-- ボタンを非表示 -->            
+        </div>
+    </div>
+
+<!-- 登退庁時間取得のスクリプト -->
+    <script>
+// ページが読み込まれたときにローカルストレージをクリア
+        window.onload = function() {
+            clearLocalStorage(); 
+        };
+
+    function toggleColorAndSave(button) {
+        const buttonName = button.getAttribute('data-button-name'); /* ボタン名を 'data-button-name' 属性から取得 */
+        button.classList.toggle('clicked'); /* クリックされたボタンに 'clicked' クラスをトグル（追加/削除） */
+        
+        const now = new Date(); /* 現在の日時を取得 */
+        const timestamp = now.toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' }); /* 日本時間で日時をフォーマット */
+        
+        const clicks = JSON.parse(localStorage.getItem(buttonName)) || []; /* ローカルストレージからクリックデータを取得し、存在しない場合は空の配列を設定 */
+        const action = (clicks.length % 2 === 0) ? '登庁' : '退庁'; /* クリック回数に基づいて登庁または退庁を設定 */
+        
+        clicks.push({ action: `${buttonName} ${action}`, timestamp }); /* クリックデータを配列に追加 */
+        localStorage.setItem(buttonName, JSON.stringify(clicks)); /* ローカルストレージにクリックデータを保存 */
+    }
+
+    // CSVファイルをダウンロードする関数
+    function downloadCSV() {
+        let csvContent = "data:text/csv;charset=utf-8,"; // CSVファイルのヘッダー
+
+        const buttons = document.querySelectorAll('button[data-button-name]'); // すべてのボタンを取得
+        buttons.forEach(button => {
+            const buttonName = button.getAttribute('data-button-name'); // 各ボタンの名前を取得
+            const clicks = JSON.parse(localStorage.getItem(buttonName)) || []; // クリックデータを取得
+            clicks.forEach(click => {
+                csvContent += `${click.action},${click.timestamp}\n`; // CSVにデータを追加
+            });
+        });
+
+        // ダウンロード処理
+            const now = new Date(); /* 現在の日時を取得 */
+            const timestamp = now.toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' }).replace(/[:/]/g, '-').replace(/\s/g, '_'); /* 日本時間で日時をフォーマットし、ファイル名に使用できる形式に変換 */
+            const filename = `出退記録_${timestamp}.csv`; /* ファイル名を生成 */
+
+            const encodedUri = encodeURI(csvContent); /* CSVコンテンツをURI形式にエンコード */
+            const link = document.createElement("a"); /* 新しいa要素を作成 */
+            link.setAttribute("href", encodedUri); /* a要素にダウンロードリンクを設定 */
+            link.setAttribute("download", filename); /* a要素にダウンロードファイル名を設定 */
+            document.body.appendChild(link); /* a要素をドキュメントに追加（Firefox用） */
+            link.click(); /* a要素をクリックしてダウンロードを開始 */
+            document.body.removeChild(link); /* a要素をドキュメントから削除 */
+        }
+
+// ローカルストレージをクリアする関数
+        function clearLocalStorage() {
+            localStorage.clear(); // ローカルストレージをクリア
+            const buttons = document.querySelectorAll('.button'); // すべてのボタンを取得
+            buttons.forEach(button => {
+                button.classList.remove('clicked'); // ボタンのクリック状態をリセット
+            });
+        }
+    </script>
+
+</body>
+</html>

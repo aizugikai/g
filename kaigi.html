@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>会議の日程表示</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #a8d5ba;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            color: black;
+            margin-bottom: 20px;
+        }
+
+        table {
+            table-layout: fixed;
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            word-wrap: break-word; /* テーブル内での折り返しを有効にする */
+        }
+
+        tr:nth-child(2n) td {
+            background-color: #f2f2f2;
+        }
+
+        th, td {
+            border: 2px solid black;
+            padding: 10px;
+            white-space: normal; /* テキストの折り返しを許可 */
+        }
+
+        th {
+            background-color: aliceblue;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        th.width25 {
+            width: 25%;
+        }
+
+        th.width50 {
+            width: 50%;
+        }
+
+        select {
+            width: 100%;
+            padding: 8px;
+            font-size: 20px;
+            box-sizing: border-box;
+            border: none;
+            background-color: transparent;
+            appearance: none;
+            white-space: normal; /* 長いテキストを折り返し表示 */
+        }
+
+        select:focus {
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 id="meeting-title">会議日程</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th class="width25">会議開始時間</th>
+                <th class="width50">会議名</th>
+                <th class="width25">会議場所</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><select class="meeting-time"></select></td>
+                <td><select class="meeting-name"></select></td>
+                <td><select class="meeting-place"></select></td>
+            </tr>
+            <tr>
+                <td><select class="meeting-time"></select></td>
+                <td><select class="meeting-name"></select></td>
+                <td><select class="meeting-place"></select></td>
+            </tr>
+            <tr>
+                <td><select class="meeting-time"></select></td>
+                <td><select class="meeting-name"></select></td>
+                <td><select class="meeting-place"></select></td>
+            </tr>
+            <tr>
+                <td><select class="meeting-time"></select></td>
+                <td><select class="meeting-name"></select></td>
+                <td><select class="meeting-place"></select></td>
+            </tr>
+            <tr>
+                <td><select class="meeting-time"></select></td>
+                <td><select class="meeting-name"></select></td>
+                <td><select class="meeting-place"></select></td>
+            </tr>
+            <tr>
+                <td><select class="meeting-time"></select></td>
+                <td><select class="meeting-name"></select></td>
+                <td><select class="meeting-place"></select></td>
+            </tr>
+        </tbody>
+    </table>
+
+<script>
+    // 数字を全角に変換する関数
+    function toFullWidthNumber(num) {
+        return num.toString().replace(/[0-9]/g, function(s) {
+            return String.fromCharCode(s.charCodeAt(0) + 0xFEE0);
+        });
+    }
+
+    // 現在の日付を取得して「〇月〇日」の形式で表示
+    const today = new Date();
+    const month = toFullWidthNumber(today.getMonth() + 1);  // 月を全角に変換
+    const day = today.getDate();
+    document.getElementById('meeting-title').textContent = `${month}月${day}日の会議日程`;
+
+    // プルダウンリストの定義
+    const meetingTimes = `
+        <option>-</option>
+        <option>9:00 AM</option>
+        <option>11:00 AM</option>
+        <option>2:00 PM</option>
+    `;
+
+    const meetingNames = `
+        <option>-</option>
+        <option>定例会議</option>
+        <option>文教厚生委員会・予算決算委員会第２分科会</option>
+        <option>正副議長と正副委員長との調整会議</option>
+    `;
+
+    const meetingPlaces = `
+        <option>-</option>
+        <option>議場</option>
+        <option>第１委員会室</option>
+        <option>第２委員会室</option>
+        <option>議長室</option>
+        <option>議会図書室</option>
+
+
+    `;
+
+    // 各プルダウンリストに定義を適用
+    document.querySelectorAll('.meeting-time').forEach(select => select.innerHTML = meetingTimes);
+    document.querySelectorAll('.meeting-name').forEach(select => select.innerHTML = meetingNames);
+    document.querySelectorAll('.meeting-place').forEach(select => select.innerHTML = meetingPlaces);
+</script>
+
+
+</body>
+</html>
