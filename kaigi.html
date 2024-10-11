@@ -121,7 +121,7 @@
     // 現在の日付を取得して「〇月〇日」の形式で表示
     const today = new Date();
     const month = toFullWidthNumber(today.getMonth() + 1);  // 月を全角に変換
-    const day = today.getDate();
+    const day = toFullWidthNumber(today.getDate());  // 日も全角に変換
     document.getElementById('meeting-title').textContent = `${month}月${day}日の会議日程`;
 
     // プルダウンリストの定義
