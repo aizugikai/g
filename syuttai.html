@@ -36,7 +36,7 @@
 
         .description {
             color: blue;
-            font-size: 14px;
+            font-size: 18px;
         }
 
         .container {
@@ -78,52 +78,26 @@
 	    top: 10px;
 	    right: 30px;
 	}
-
-        .blue-button {
-            background-color: blue;
-            width: 15px; /* ボタンの直径 */
-            height: 15px; /* ボタンの直径 */
-            border-radius: 20%; /* 完全な円にする */
-            display: inline-flex; /* 中央揃えのためにインラインフレックスを使用 */
-            align-items: center; /* 縦方向の中央揃え */
-            justify-content: center; /* 横方向の中央揃え */
-            font-size: 8px; /* テキストのフォントサイズ */
-            color: white; /* テキストの色 */
-            text-align: center; /* テキストの位置 */
-            text-decoration: none; /* テキストの装飾を削除 */
-            border: none; /* ボーダーをなしにする */
-            cursor: pointer; /* カーソルをポインタに設定 */
-        }
-
-        .red-button {
-            background-color: red;
-            width: 15px; /* ボタンの直径 */
-            height: 15px; /* ボタンの直径 */
-            border-radius: 20%; /* 完全な円にする */
-            display: inline-flex; /* 中央揃えのためにインラインフレックスを使用 */
-            align-items: center; /* 縦方向の中央揃え */
-            justify-content: center; /* 横方向の中央揃え */
-            font-size: 8px; /* テキストのフォントサイズ */
-            color: white; /* テキストの色 */
-            text-align: center; /* テキストの位置 */
-            text-decoration: none; /* テキストの装飾を削除 */
-            border: none; /* ボーダーをなしにする */
-            cursor: pointer; /* カーソルをポインタに設定 */
-        }
-
     </style>
-
-    <title>syuttai</title>
-
+<title>syuttai</title>
 </head>
 
 <body>
-	<div class="t">
+    <div class="t">
  	<!-- クリック時にdownloadCSV関数を呼び出す -->
-		<button class="blue-button" onclick="downloadCSV()">Re</button>
+	<svg style="width:26px;" viewBox="0 0 64 64" onclick="downloadCSV()">
+	  <rect style="fill:#EEE;stroke:#666;stroke-width:2;" x="4" y="4" width="56" height="56" />
+	  <path d="M37, 8 L48,14 L43,23 L32,17 z" style="fill:#333;stroke:none;" />
+	  <path d="M30,20 L41,26 L29,47 L19,52 L18,41 z" style="fill:#333;stroke:none;" />
+	</svg>
+
  	<!-- クリック時にclearLocalStorage関数を呼び出す -->
-		<button class="red-button" onclick="clearLocalStorage()">Cl</button>
-	</div>
+	<svg style="width:26px;" viewBox="0 0 64 64" onclick="clearLocalStorage()">
+	  <rect style="fill:#EEE;stroke:#666;stroke-width:2;" x="4" y="4" width="56" height="56" />
+	  <path d="M43,42 A16,16 0,1,1 43,20" style="fill:none;stroke:#333;stroke-width:6;" />
+	  <path d="M42,19 L50,13 L50,28 L35,28 z" style="fill:#333;stroke:none;" />
+	</svg>
+    </div>
 
     <div class="content">
         <div class="header">
@@ -131,7 +105,7 @@
             <div class="description">登庁：■</div>
         </div>
 
-        <div class="container">
+    <div class="container">
 	<!-- ボタン1 --><button class="button" data-button-name="1太郎" onclick="toggleColorAndSave(this)">1会津　太郎</button>
 	<!-- ボタン2 --><button class="button" data-button-name="2花子" onclick="toggleColorAndSave(this)">2会津　太郎</button>
 	<!-- ボタン3 --><button class="button" data-button-name="3太郎" onclick="toggleColorAndSave(this)">3会津　太郎</button>
