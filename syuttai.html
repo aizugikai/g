@@ -275,6 +275,20 @@
             menuIcon.classList.toggle('active');
         }
 
+// 午後5時にdownloadCSVを実行する関数
+function checkTimeAndDownload() {
+    const now = new Date();
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+
+    // 午後5時をチェック
+    if (hours === 17 && minutes === 0) {
+        downloadCSV(); // downloadCSVを実行
+    }
+}
+
+// 1分ごとに時間をチェック
+setInterval(checkTimeAndDownload, 60000);
 
 
 
