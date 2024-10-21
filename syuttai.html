@@ -163,7 +163,7 @@
     <div class="menu" id="menu">
         <ul>
             <li><span onclick="downloadCSV()" style="cursor: pointer;">出退状況記録</span></li>
-            <li><span onclick="clearLocalStorageButton()" style="cursor: pointer;">クリア</span></li>
+            <li><span onclick="clearLocalStorage()" style="cursor: pointer;">クリア</span></li>
         </ul>
     </div>
 
@@ -229,13 +229,8 @@
         localStorage.setItem(buttonName, JSON.stringify(clicks)); /* ローカルストレージにクリックデータを保存 */
     }
 
-// CSVファイルをダウンロードする関数
-	function downloadCSV() {
-    	const correctPassword = "1234"; // 設定するパスワード
-    	const userPassword = prompt("パスワードを入力してください:");
-
-    // パスワードが正しいか確認
-    if (userPassword === correctPassword) {
+    // CSVファイルをダウンロードする関数
+    function downloadCSV() {
         let csvContent = "data:text/csv;charset=utf-8,"; // CSVファイルのヘッダー
 
         const buttons = document.querySelectorAll('button[data-button-name]'); // すべてのボタンを取得
@@ -248,48 +243,27 @@
         });
 
         // ダウンロード処理
-        const now = new Date(); /* 現在の日時を取得 */
-        const timestamp = now.toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' }).replace(/[:/]/g, '-').replace(/\s/g, '_'); /* 日本時間で日時をフォーマットし、ファイル名に使用できる形式に変換 */
-        const filename = `出退記録_${timestamp}.csv`; /* ファイル名を生成 */
+            const now = new Date(); /* 現在の日時を取得 */
+            const timestamp = now.toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' }).replace(/[:/]/g, '-').replace(/\s/g, '_'); /* 日本時間で日時をフォーマットし、ファイル名に使用できる形式に変換 */
+            const filename = `出退記録_${timestamp}.csv`; /* ファイル名を生成 */
 
-        const encodedUri = encodeURI(csvContent); /* CSVコンテンツをURI形式にエンコード */
-        const link = document.createElement("a"); /* 新しいa要素を作成 */
-        link.setAttribute("href", encodedUri); /* a要素にダウンロードリンクを設定 */
-        link.setAttribute("download", filename); /* a要素にダウンロードファイル名を設定 */
-        document.body.appendChild(link); /* a要素をドキュメントに追加（Firefox用） */
-        link.click(); /* a要素をクリックしてダウンロードを開始 */
-        document.body.removeChild(link); /* a要素をドキュメントから削除 */
-    } else {
-        alert("パスワードが間違っています。");
-    }
-}
-
-// ページ立ち上げ時にローカルストレージをクリアする関数
-	function clearLocalStorage() {
-        localStorage.clear(); // ローカルストレージをクリア
-        const buttons = document.querySelectorAll('.button'); // すべてのボタンを取得
-        buttons.forEach(button => {
-        button.classList.remove('clicked'); // ボタンのクリック状態をリセット
-            });
+            const encodedUri = encodeURI(csvContent); /* CSVコンテンツをURI形式にエンコード */
+            const link = document.createElement("a"); /* 新しいa要素を作成 */
+            link.setAttribute("href", encodedUri); /* a要素にダウンロードリンクを設定 */
+            link.setAttribute("download", filename); /* a要素にダウンロードファイル名を設定 */
+            document.body.appendChild(link); /* a要素をドキュメントに追加（Firefox用） */
+            link.click(); /* a要素をクリックしてダウンロードを開始 */
+            document.body.removeChild(link); /* a要素をドキュメントから削除 */
         }
 
-
-// ボタンをクリックするとローカルストレージをクリアする関数
-	function clearLocalStorageButton() {
-    	const correctPassword = "1234"; // 設定するパスワード
-    	const userPassword = prompt("パスワードを入力してください:");
-
-    // パスワードが正しいか確認
-    if (userPassword === correctPassword) {
-        localStorage.clear(); // ローカルストレージをクリア
-        const buttons = document.querySelectorAll('.button'); // すべてのボタンを取得
-        buttons.forEach(button => {
-            button.classList.remove('clicked'); // ボタンのクリック状態をリセット
-        });
-    } else {
-        alert("パスワードが間違っています。");
-    }
-}
+// ローカルストレージをクリアする関数
+        function clearLocalStorage() {
+            localStorage.clear(); // ローカルストレージをクリア
+            const buttons = document.querySelectorAll('.button'); // すべてのボタンを取得
+            buttons.forEach(button => {
+                button.classList.remove('clicked'); // ボタンのクリック状態をリセット
+            });
+        }
 
 // ハンバーガーメニューの関数
 	function toggleMenu() {
