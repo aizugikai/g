@@ -7,6 +7,8 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #e4f6d9;
+            margin: 0;
+            padding: 20px;
         }
 
         h1 {
@@ -48,8 +50,30 @@
             width: 48%;
         }
 
-         th.width27 {
+        th.width27 {
             width: 27%;
+        }
+
+        /* カスタマイズしたファイル選択ボタンのスタイル */
+        .custom-file-upload {
+            display: inline-block;
+            padding: 2px;
+            cursor: pointer;
+            background-color: grey;
+            border-radius: 2px;
+            color: white;
+            border: none;
+            font-size: 10px;
+            text-align: center;
+            margin: 20px auto;
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            z-index: 1000;
+        }
+
+        input[type="file"] {
+            display: none; /* 元のinputを非表示にする */
         }
 
         select {
@@ -113,6 +137,10 @@
             </tr>
         </tbody>
     </table>
+
+    <!-- カスタムファイル選択ボタン -->
+    <label class="custom-file-upload">pdf<input type="file" id="pdfInput" accept="application/pdf">
+    </label>
 
 <script>
     // 数字を全角に変換する関数
@@ -181,8 +209,17 @@
     document.querySelectorAll('.meeting-time').forEach(select => select.innerHTML = meetingTimes);
     document.querySelectorAll('.meeting-name').forEach(select => select.innerHTML = meetingNames);
     document.querySelectorAll('.meeting-place').forEach(select => select.innerHTML = meetingPlaces);
-</script>
 
+
+    // PDFファイルを選択したときの処理
+    document.getElementById('pdfInput').addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        if (file && file.type === "application/pdf") {
+            const fileURL = URL.createObjectURL(file); // 選択したファイルのURLを生成
+            window.location.href = fileURL + "#toolbar=0"; // 現在のページをPDFファイルに置き換え
+        }
+    });
+</script>
 
 </body>
 </html>
