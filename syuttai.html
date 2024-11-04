@@ -102,15 +102,16 @@
             justify-content: center;
             align-items: center;
             cursor: pointer; /* カーソルをポインタに設定 */
-            border: 1.5px solid #000;
-            border-radius: 3px; /* 角丸設定 */
+            border: 1.5px solid silver;
+            box-shadow: 3px 3px 0 grey; /* ボタンの影の設定 */
+            border-radius: 5px; /* 角丸設定 */
             transition: all 0.3s ease; /* ボタンのすべてのプロパティに0.3秒のトランジション効果を設定 */
         }
 
         .button.clicked {
             background-color: blue; /* クリック後のボタンの背景色 */
             color: white; /* クリック後のテキストの色を白に設定 */
-            box-shadow: 0 0 10px rgba(0, 0, 255, 0.7); /* クリック後のボックスシャドウを設定 */
+            box-shadow: 3px 3px 3px rgba(0, 0, 255, 0.7); /* クリック後のボックスシャドウを設定 */
         }
 
         .button.hidden {
