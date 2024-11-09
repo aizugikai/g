@@ -3,13 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
-
     <title>syuttai</title>
 
     <style>
         body {
-            background-color: #fff6e3;
-	    background: linear-gradient(to bottom, papayawhip, moccasin);
+            background: linear-gradient(to bottom, papayawhip, moccasin);
             display: flex;
             justify-content: flex-end;
 	    font-family: "Noto Sans JP", sans-serif;
@@ -27,21 +25,42 @@
             justify-content: center; /* ヘッダーを中央に配置 */
             align-items: center;
             margin-top: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 14px;
             border-bottom: 3px solid black; /* 下線を追加 */
             padding-bottom: 1px; /* 下線との間に余白を追加 */
         }
 
-        .caption {
-            color: black; /* テキストの色 */
-            font-weight: bold;
-            font-size: 24px;
-            margin-right: 20px;
+        .text-logo {
+         font-size: 30px;
+	 font-family: "Noto Sans JP", sans-serif;
+         color: #333;
+         display: flex;
+         align-items: center;
+         gap: 3px;
         }
 
-        .description {
-            color: blue;
-            font-size: 18px;
+       .text-logo .in {
+        background: linear-gradient(135deg, #3b82f6, #60a5fa);
+        color: white;
+        height: 35px;
+        width: 35px;
+        display: flex;
+        align-items: center; /* テキストを縦中央に配置 */
+        justify-content: center; /* テキストを横中央に配置 */
+        padding: 2px;
+        border-radius: 3px;
+        }
+
+       .text-logo .out {
+        background: linear-gradient(135deg, #9ca3af, #d1d5db);
+        color: black;
+        height: 35px;
+        width: 35px;
+        display: flex;
+        align-items: center; /* テキストを縦中央に配置 */
+        justify-content: center; /* テキストを横中央に配置 */
+        padding: 2px;
+        border-radius: 3px;
         }
 
         .container {
@@ -216,8 +235,14 @@
     <div class="content">
 
     <div class="header">
-       <div class="caption">議員出退表示</div>
-       <div class="description">登庁：■</div>
+      <div class="text-logo">
+        <span>議</span>
+        <span>員</span>
+        <span class="in">出</span>
+        <span class="out">退</span>
+        <span>表</span>
+        <span>示</span>
+      </div>
     </div>
 
     <div class="container">
