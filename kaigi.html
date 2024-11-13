@@ -14,14 +14,37 @@
             padding: 0px 10px;
         }
 
-        h1 {
-            text-align: center;
+        .header {
+            display: flex;
+            justify-content: center; /* ヘッダーを中央に配置 */
+            align-items: center;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            border: none;
+        }
+
+        .nittei {
+            font-family: "Noto Sans JP", sans-serif;
+            font-size: 28px;
+            color: black;
+        }
+
+        .clock {
             font-family: "Noto Sans JP", sans-serif;
             font-size: 24px;
-            color: black;
-            margin-top: 15px;
-            margin-bottom: 20px;
+            text-align: center;
+            position: fixed;
+            top: 14px;
+            right: 10px;
+            z-index: 1000;
         }
+
+        #time {
+            font-family: "Noto Sans JP", sans-serif;
+            font-size: 24px;
+            text-align: center;
+        }
+
 
         table {
             table-layout: fixed;
@@ -151,7 +174,12 @@
     </style>
 </head>
 <body>
-    <h1 id="meeting-title">会議日程</h1>
+
+    <div class="header">
+      <div class="nittei" id="meeting-title">会議日程</div>
+    </div>
+
+
     <table>
         <thead>
             <tr>
@@ -225,6 +253,11 @@
         </ul>
     </div>
 
+　　　<!-- 時刻表示 -->
+      <div class="clock">時刻 <span id="time">--:--</span></div>
+
+
+
 <script>
     // 数字を全角に変換する関数
     function toFullWidthNumber(num) {
@@ -269,10 +302,10 @@
         <option>文教厚生委員会協議会</option>
         <option>文教厚生委員会・予算決算委員会第２分科会</option>
         <option>産業経済委員会</option>
-　　　　 <option>産業経済委員会協議会</option>
+　　　　<option>産業経済委員会協議会</option>
         <option>産業経済委員会・予算決算委員会第３分科会</option>
         <option>建設委員会</option>
-　　　　 <option>建設委員会協議会</option>
+　　　　<option>建設委員会協議会</option>
         <option>建設委員会・予算決算委員会第４分科会</option>
         <option>予算決算委員会第１分科会</option>
         <option>予算決算委員会第２分科会</option>
@@ -280,7 +313,7 @@
         <option>予算決算委員会第４分科会</option>
         <option>定例会議</option>
         <option>予算決算委員会</option>
-　　　　 <option>議員全員協議会</option>
+　　　　<option>議員全員協議会</option>
         <option>正副議長と正副委員長との調整会議</option>
     `;
 
@@ -319,6 +352,19 @@
             window.location.href = fileURL + "#toolbar=0"; // 現在のページをPDFファイルに置き換え
         }
     });
+
+    function updateClock() {
+        const now = new Date();
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        document.getElementById('time').textContent = `${hours}:${minutes}`;
+    }
+
+    setInterval(updateClock, 1000 * 60); // 1分ごとにupdateClockを実行
+    updateClock(); // 初期表示
+
+
+
 </script>
 
 </body>
