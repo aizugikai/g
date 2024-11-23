@@ -7,7 +7,7 @@
 
     <style>
         body {
-            background: linear-gradient(to bottom, papayawhip, moccasin);
+            background-color: #f9f5e7;
             display: flex;
             justify-content: flex-end;
 	    font-family: "Noto Sans JP", sans-serif;
@@ -65,7 +65,7 @@
         justify-content: center; /* テキストを横中央に配置 */
         padding: 2px;
         border-radius: 3px;
-	margin-left: 3px;
+        margin-left: 3px;
         }
 
         .container {
@@ -128,7 +128,7 @@
             align-items: center;
             cursor: pointer; /* カーソルをポインタに設定 */
             border: 1.5px solid silver;
-            box-shadow: 3px 3px 0 grey; /* ボタンの影の設定 */
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
             border-radius: 5px; /* 角丸設定 */
             transition: all 0.3s ease; /* ボタンのすべてのプロパティに0.3秒のトランジション効果を設定 */
         }
@@ -357,20 +357,32 @@
             menuIcon.classList.toggle('active');
         }
 
-// 午後5時にdownloadCSVを実行する関数
-function checkTimeAndDownload() {
-    const now = new Date();
-    const hours = now.getHours();
-    const minutes = now.getMinutes();
 
-    // 午後5時をチェック
-    if (hours === 17 && minutes === 0) {
-        downloadCSV(); // downloadCSVを実行
+// 午後5時にdownloadCSVを実行する関数
+    function scheduleDownload() {
+    const now = new Date();
+    const target = new Date(); // 今日の日付
+    target.setHours(17, 0, 0, 0); // 午後5時に設定
+
+    // 現在時刻が午後5時を過ぎている場合、翌日の午後5時に設定
+    if (now > target) {
+        target.setDate(target.getDate() + 1);
     }
+
+    // 現在から午後5時までの残り時間を計算 (ミリ秒単位)
+    const timeUntilTarget = target - now;
+
+    console.log(`ダウンロードは ${target} に実行されます。`);
+
+    // タイマーを設定
+    setTimeout(() => {
+        downloadCSV(); // downloadCSVを実行
+        scheduleDownload(); // 次のダウンロードをスケジュール
+    }, timeUntilTarget);
 }
 
-// 1分ごとに時間をチェック
-setInterval(checkTimeAndDownload, 60000);
+// 初回のスケジュールを設定
+scheduleDownload();
 
 
 
