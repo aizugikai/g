@@ -130,6 +130,8 @@
             border: 1.5px solid silver;
             box-shadow: 3px 3px 0 grey; /* ボタンの影の設定 */
             border-radius: 5px; /* 角丸設定 */
+            position: relative; /* 擬似要素のために必要 */
+            overflow: hidden;
             transition: all 0.3s ease; /* ボタンのすべてのプロパティに0.3秒のトランジション効果を設定 */
         }
 
@@ -138,6 +140,32 @@
             color: white; /* クリック後のテキストの色を白に設定 */
             box-shadow: 3px 3px 3px rgba(0, 0, 255, 0.7); /* クリック後のボックスシャドウを設定 */
         }
+
+    /* ✨光るエフェクト用のアニメーション */
+    .button::after {
+      content: '';
+      position: absolute;
+      top: -100%;
+      left: -150%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(20deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0.1) 100%);
+      transform: skewX(-20deg);
+    }
+
+    .button.shine::after {
+      animation: shine 1.7s forwards;
+    }
+
+    @keyframes shine {
+      from {
+        left: -100%;
+      }
+      to {
+        left: 300%;
+      }
+    }
+
 
         .button.hidden {
             display: none;
@@ -301,6 +329,14 @@
         const buttonName = button.getAttribute('data-button-name'); /* ボタン名を 'data-button-name' 属性から取得 */
         button.classList.toggle('clicked'); /* クリックされたボタンに 'clicked' クラスをトグル（追加/削除） */
         
+      // ✨ shine クラスを一時的に追加してエフェクト再生
+      button.classList.add('shine');
+      setTimeout(() => {
+        button.classList.remove('shine');
+      }, 600); // アニメーション時間と同じ
+
+
+
         const now = new Date(); /* 現在の日時を取得 */
         const timestamp = now.toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' }); /* 日本時間で日時をフォーマット */
         
@@ -383,8 +419,6 @@
 
 // 初回のスケジュールを設定
 scheduleDownload();
-
-
 
     </script>
 
